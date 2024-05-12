@@ -1,5 +1,6 @@
 package com.example.processtextbug
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
@@ -16,12 +17,13 @@ import com.example.processtextbug.ui.theme.ProcessTextBugTheme
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        val processText = intent?.getCharSequenceExtra(Intent.EXTRA_PROCESS_TEXT)?.toString() ?: "No processed text"
         enableEdgeToEdge()
         setContent {
             ProcessTextBugTheme {
                 Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
                     Greeting(
-                        name = "Android",
+                        name = processText,
                         modifier = Modifier.padding(innerPadding)
                     )
                 }
